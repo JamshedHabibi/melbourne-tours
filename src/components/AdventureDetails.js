@@ -6,7 +6,8 @@ import {
 	Divider,
 	Icon,
 	List,
-	Rating
+	Rating,
+	Responsive
 } from 'semantic-ui-react';
 import {Consumer} from '../Context';
 import Navbar from './Navbar';
@@ -48,10 +49,42 @@ export default class AdventureDetails extends Component {
 									<Image src={selectedTourToView.images[0].source_url} fluid />
 								</Grid.Row>
 								<Grid.Row>
-									<Grid.Column width={11}>
+									<Grid.Column tablet={16} computer={11}>
 										<Grid.Row>
 											<h3>{selectedTourToView.intro} </h3>
 										</Grid.Row>
+										<Responsive
+											as={Grid.Column}
+											maxWidth={992}
+											tablet={16}
+											computer={5}
+											className="adventure-details-price-view-now-wrapper">
+											<Grid.Row>
+												<h5>
+													From
+													<div className="adventure-details-price-text">
+														{selectedTourToView.price.amount}{' '}
+														{selectedTourToView.price.currency}
+													</div>
+													per person
+													<a
+														as="a"
+														target="_blank"
+														href={selectedTourToView.vendor_tour_url}
+														rel="noreferrer">
+														<span className="adventure-details-view-now-button">
+															<span className="adventure-details-view-now-button-text">
+																Book now
+															</span>
+														</span>
+													</a>
+												</h5>
+											</Grid.Row>
+											{/*<Grid.Row className="adventure-details-add-to-wishlist-button">
+											Add to Wishlist
+											<Rating icon="heart" defaultRating={1} maxRating={1} />
+                                                </Grid.Row>*/}
+										</Responsive>
 
 										<Grid.Row className="adventure-detail-highlights">
 											<p className="adventure-detail-subtitle">Highlights</p>
@@ -92,8 +125,11 @@ export default class AdventureDetails extends Component {
 											</p>
 										</Grid.Row>
 									</Grid.Column>
-									<Grid.Column
-										width={5}
+									<Responsive
+										as={Grid.Column}
+										minWidth={992}
+										tablet={16}
+										computer={5}
 										className="adventure-details-price-view-now-wrapper">
 										<Grid.Row>
 											<h5>
@@ -120,7 +156,7 @@ export default class AdventureDetails extends Component {
 											Add to Wishlist
 											<Rating icon="heart" defaultRating={1} maxRating={1} />
                                                 </Grid.Row>*/}
-									</Grid.Column>
+									</Responsive>
 								</Grid.Row>
 							</Grid>
 						);

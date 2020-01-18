@@ -1,0 +1,26 @@
+.wishlist {
+    position: relative;
+    top: 13vh;
+}
+
+.wishlist-error-message {
+    position: relative;
+    top: 25vh;
+    font-size: 1.8em;
+    color: rgb(0, 0, 0, 0.4);
+}
+
+.wishlist-title {
+    position: relative;
+    top: 6vh;
+}
+
+.wishlist-listings {
+    position: relative;
+    top: 7vh;
+}
+
+.wishlist-length {
+    font-size: 1.3em;
+    color: rgb(0, 0, 0, 0.4);
+}

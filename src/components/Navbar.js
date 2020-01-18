@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 import TravelAlertModal from './TravelAlertModal';
 import logoBlue from './logoBlue.png';
 
-export default class NavbarHomePage extends Component {
+export default class Navbar extends Component {
 	render() {
 		return (
 			<Grid className="navbar-wrapper" id="navbar-wrapper">

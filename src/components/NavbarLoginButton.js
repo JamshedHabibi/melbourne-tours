@@ -3,6 +3,7 @@ import {Dropdown, Icon, Menu} from 'semantic-ui-react';
 import './NavbarLoginButton.css';
 import {Consumer} from '../Context';
 import LogInModal from './LogInModal';
+import {Link} from 'react-router-dom';
 
 export default class NavbarLoginButton extends Component {
 	render() {
@@ -34,8 +35,10 @@ export default class NavbarLoginButton extends Component {
 				key: 2,
 				text: (
 					<div>
-						<Icon name="heart" />
-						Wishlist
+						<Link to="/wishlist" style={{color: 'black'}}>
+							<Icon name="heart" />
+							Wishlist
+						</Link>
 					</div>
 				),
 				value: 2
@@ -57,8 +60,10 @@ export default class NavbarLoginButton extends Component {
 				key: 2,
 				text: (
 					<div>
-						<Icon name="heart" />
-						Wishlist
+						<Link to="/wishlist" style={{color: 'black'}}>
+							<Icon name="heart" />
+							Wishlist
+						</Link>
 					</div>
 				),
 				value: 2

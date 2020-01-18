@@ -143,17 +143,18 @@ class Provider extends Component {
 
 	addToWishList = tour => {
 		let currentWishList = this.state.wishlist;
-		let foundTour = currentWishList.find(item => item.id === tour.id);
-		if (foundTour === undefined) {
-			currentWishList.push(tour);
-		} else {
-			currentWishList.splice(
-				currentWishList.indexOf(foundTour),
-				currentWishList.indexOf(foundTour) + 1
-			);
-		}
+		currentWishList.push(tour);
 
-		console.log(currentWishList, foundTour);
+		this.setState({wishlist: currentWishList}, () =>
+			console.log(this.state.wishlist)
+		);
+	};
+
+	removeFromWishList = tour => {
+		let currentWishList = this.state.wishlist;
+		let foundTour = currentWishList.find(item => item.id === tour.id);
+		currentWishList.splice(currentWishList.indexOf(foundTour), 1);
+		this.setState({wishlist: currentWishList});
 	};
 
 	tourPriceFilter = () => {
@@ -278,7 +279,8 @@ class Provider extends Component {
 					addToWishList: this.addToWishList,
 					searchbarFilter: this.searchbarFilter,
 					viewSelectedTour: this.viewSelectedTour,
-					activateFilterPanel: this.activateFilterPanel
+					activateFilterPanel: this.activateFilterPanel,
+					removeFromWishList: this.removeFromWishList
 				}}>
 				{this.props.children}
 			</Context.Provider>

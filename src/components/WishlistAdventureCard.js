@@ -38,25 +38,27 @@ export default class AdventureCard extends Component {
 											</Item.Extra>
 										</Link>
 										<Item.Extra>
-											{!context.wishlist.find(item => item.id === id) ? (
-												<p
-													style={{cursor: 'pointer'}}
-													onClick={() => context.addToWishList(this.props.item)}>
-													<span>
-														<Icon name="heart" />
-													</span>{' '}
-													Add to Wishlist
-												</p>
-											) : (
-												<p
-													style={{cursor: 'pointer'}}
-													onClick={() => context.removeFromWishList(this.props.item)}>
-													<span>
-														<Icon name="heart" style={{color: 'red'}} />
-													</span>{' '}
-													Remove from Wishlist
-												</p>
-											)}
+											<Item.Group relaxed>
+												{!context.wishlist.find(item => item.id === id) ? (
+													<p
+														style={{cursor: 'pointer'}}
+														onClick={() => context.addToWishList(this.props.item)}>
+														<span>
+															<Icon name="heart" />
+														</span>{' '}
+														Add to Wishlist
+													</p>
+												) : (
+													<p
+														style={{cursor: 'pointer'}}
+														onClick={() => context.removeFromWishList(this.props.item)}>
+														<span>
+															<Icon name="heart" style={{color: 'red'}} />
+														</span>{' '}
+														Remove from Wishlist
+													</p>
+												)}
+											</Item.Group>
 										</Item.Extra>
 									</Grid.Column>
 								</Grid>

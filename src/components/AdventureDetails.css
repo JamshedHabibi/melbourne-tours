@@ -63,3 +63,16 @@
 .adventure-details-add-to-wishlist-button {
     font-size: 1.2em;
 }
+
+@media screen and (max-width: 992px) {
+    .adventure-details-view-now-button {
+        left: 22vw;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .adventure-details-price-view-now-wrapper {
+        position: relative;
+        top: 3vh;
+    }
+}
