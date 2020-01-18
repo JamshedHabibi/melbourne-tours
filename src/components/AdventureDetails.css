@@ -1,0 +1,65 @@
+.adventure-detail-wrapper {
+    position: relative;
+    top: 11.5vh;
+}
+
+.adventure-detail-content {
+    position: relative;
+    top: 10vh;
+}
+
+.adventure-details-price-view-now-wrapper {
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 0.1px 10px 0 rgba(0, 0, 0, 0.19) !important;
+    padding: 20px;
+    border-top: 4px solid var(--mainOrange);
+    height: 18vh;
+}
+
+.adventure-details-price-text {
+    font-size: 1.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+
+
+.adventure-details-view-now-button {
+    position: relative;
+    left: 6vw;
+    top: -4vh;
+    background-color: var(--mainOrange);
+    color: white;
+    padding: 13px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.adventure-details-view-now-button:hover {
+    background: rgb(184, 120, 0);
+}
+
+.adventure-detail-highlights {
+    padding-top: 50px;
+}
+
+.adventure-detail-details {
+    padding-top: 30px;
+    text-align: justify;
+}
+
+.adventure-detail-subtitle {
+    font-size: 1.6em;
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.adventure-detail-subtitle-content {
+    font-size: 1.2em;
+}
+
+.adventure-details-add-to-wishlist-button {
+    font-size: 1.2em;
+}

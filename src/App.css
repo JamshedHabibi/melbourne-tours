@@ -1,0 +1,8 @@
+:root {
+  --mainOrange: rgb(240, 177, 40);
+  --mainBlue: rgb(32, 50, 88);
+}
+
+body {
+  overflow-x: hidden;
+}

@@ -1,0 +1,32 @@
+.navbar-login-btn-text {
+    padding-left: 10px;
+}
+
+.navbar-login-btn-text-signed-in {
+    padding-left: 10px;
+    position: relative;
+    top: -14px;
+
+}
+
+.navbar-login-btn {
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    background: transparent !important;
+    color: white !important;
+}
+
+.navbar-login-btn-signed-in {
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    position: relative;
+    top: -15px;
+    background: transparent !important;
+    color: white !important;
+}
+
+@media screen and (max-width: 710px) {
+    .navbar-login-btn-text {}
+}

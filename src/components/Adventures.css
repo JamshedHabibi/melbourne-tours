@@ -1,0 +1,184 @@
+.adventures-wrapper {
+    position: relative;
+    top: 15vh;
+}
+
+.adventures-header {
+    position: relative;
+    top: 1vh;
+}
+
+.adventures-content {
+    position: relative;
+    top: 4vh;
+}
+
+.adventures-date-selector-header {
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.loader-before-api-is-loaded {
+    position: relative !important;
+    top: 50vh !important;
+    border: none !important;
+}
+
+.adventure-item {
+    padding-bottom: 10px;
+    border: 1px solid rgba(140, 140, 140, 0.479) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 0.1px 1px 0 rgba(0, 0, 0, 0.19) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.adventure-item:hover {
+
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 0.1px 10px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.adventures-date-selector-wrapper {
+    background: var(--mainBlue);
+    position: relative;
+    top: 3.3vh;
+    border-radius: 4px;
+    height: 310px;
+}
+
+.adventures-date-selectors {
+    text-align: center;
+}
+
+.adventures-date-selector-inputs {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.adventures-date-selector {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.adventures-date-availability-checker {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.adventures-date-availability-checker-wrapper {
+    background: rgb(0, 153, 255);
+    border-radius: 30px;
+    width: 80%;
+    text-align: center;
+    position: relative;
+    left: 10%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.adventures-date-availability-checker-wrapper:hover {
+    background: rgb(0, 110, 184);
+}
+
+.adventure-filters {
+    position: relative;
+    top: 7vh;
+}
+
+.adventure-filters-menu-box {
+    width: 100% !important;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 0.1px 10px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.results-found {
+    font-size: 1.8em;
+    position: relative;
+    top: 2vh;
+}
+
+.adventures-no-results-response {
+    position: relative;
+    top: 44vh;
+    left: 20vw;
+    font-size: 1.8em;
+    color: rgb(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width: 992px) {
+    .adventures-filter-side-panels {
+        position: relative;
+        left: -150vw;
+        width: 400px !important;
+        height: 160vh;
+        z-index: 2;
+        top: -35.2vh;
+        background: var(--mainBlue);
+        transition: all 0.4s ease-in-out;
+    }
+
+
+    .adventures-date-selector-wrapper {
+        width: 250px;
+        left: 15vw;
+    }
+
+    .adventure-filters {
+        width: 250px;
+        left: 15vw;
+    }
+
+    .adventures-date-selector-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .adventures-results-smallscreen {
+        position: relative;
+        top: -165vh;
+    }
+
+    .adventures-filter-side-panels-close-btn {
+        position: relative;
+        left: 80%;
+        top: 3vh;
+        color: white;
+        cursor: pointer;
+    }
+
+    .adventures-select-filter-small-screen {
+        padding-top: 8vh;
+    }
+
+    .adventures-sort-by-option {
+        position: relative;
+        left: -5vw;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .results-found {
+        font-size: 1.5em;
+    }
+
+    .adventures-sort-by-option {
+        position: relative;
+        left: -15vw;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .results-found {
+        font-size: 1.2em;
+    }
+
+    .adventures-sort-by-option {
+        position: relative;
+        left: -30vw;
+    }
+
+    .adventures-filter-side-panels {
+        top: -37.5vh;
+    }
+}

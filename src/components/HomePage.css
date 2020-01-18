@@ -1,0 +1,62 @@
+.homepage {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.background-img {
+    position: relative;
+    top: 0vh;
+    filter: brightness(73%);
+}
+
+.homepage-content {
+    position: relative;
+    top: -65vh;
+    text-align: center;
+
+}
+
+.homepage-main-title {
+    font-size: 2em;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.homepage-subtitle {
+    font-size: 1.4em;
+    position: relative;
+    font-family: 'Baskervville', serif;
+    color: white;
+}
+
+.homepage-find-tours-button {
+    position: relative;
+    border: 2px solid white;
+    border-radius: 3px;
+    width: 160px !important;
+    left: 44vw;
+    top: 10vh;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.homepage-find-tours-button:hover {
+    background-color: var(--mainOrange);
+    color: black;
+    border: 2px solid var(--mainOrange);
+}
+
+
+@media screen and (max-width: 710px) {
+    .homepage-find-tours-button {
+        left: 30vw;
+    }
+
+    .homepage-content {
+        font-size: 0.7em;
+        top: -80vh;
+
+    }
+}

@@ -1,0 +1,67 @@
+.login-modal-heading {
+    text-align: center;
+}
+
+.login-modal-name {
+    text-align: center;
+}
+
+.login-modal-name-input {
+    width: 230px !important;
+}
+
+.login-modal-email {
+    text-align: center;
+}
+
+.login-modal-email-input {
+    width: 230px !important;
+}
+
+.login-modal-password {
+    text-align: center;
+}
+
+.login-modal-password-input {
+    width: 230px !important;
+}
+
+.login-modal-submit {
+    text-align: center;
+}
+
+.login-modal-or {
+    text-align: center;
+}
+
+.login-modal {
+    width: 400px !important;
+}
+
+.login-modal-form {
+    position: relative;
+    top: -2vh;
+}
+
+.login-modal-marketing-emails {
+    text-align: center;
+}
+
+.login-modal-change-modal {
+    text-align: center;
+}
+
+.login-modal-change-modal-color {
+    color: rgb(63, 82, 190);
+    cursor: pointer;
+}
+
+#login-error-message {
+    color: red;
+    text-align: center;
+}
+
+#sign-up-error-message {
+    color: red;
+    text-align: center;
+}
