@@ -4,6 +4,7 @@ import './NavbarLoginButton.css';
 import {Consumer} from '../Context';
 import LogInModal from './LogInModal';
 import {Link} from 'react-router-dom';
+import AccountDetails from './AccountDetails';
 
 export default class NavbarLoginButton extends Component {
 	render() {
@@ -48,14 +49,7 @@ export default class NavbarLoginButton extends Component {
 		const accountOptions = [
 			{
 				key: 1,
-				text: (
-					<Link to="/account" style={{color: 'black'}}>
-						<div>
-							<Icon name="user" />
-							Account Details
-						</div>
-					</Link>
-				),
+				text: <AccountDetails />,
 				value: 1
 			},
 			{

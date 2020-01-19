@@ -24,7 +24,8 @@ class Provider extends Component {
 		selectedTourToView: [],
 		filterPanelActivated: false,
 		dateAccountCreated: '',
-		lastSignInDate: ''
+		lastSignInDate: '',
+		accountDetailsModalOpen: true
 	};
 
 	componentDidMount() {
@@ -232,6 +233,11 @@ class Provider extends Component {
 	handleSignUpModalOpen = () => this.setState({signUpModalOpen: true});
 	handleSignUpModalClose = () => this.setState({signUpModalOpen: false});
 
+	handleAccountDetailsModalOpen = () =>
+		this.setState({accountDetailsModalOpen: true});
+	handleAccountDetailsModalClose = () =>
+		this.setState({accountDetailsModalOpen: false});
+
 	handleChange = e => {
 		this.setState({[e.target.name]: e.target.value}, () => {
 			this.tourPriceFilter();
@@ -296,7 +302,9 @@ class Provider extends Component {
 					viewSelectedTour: this.viewSelectedTour,
 					activateFilterPanel: this.activateFilterPanel,
 					removeFromWishList: this.removeFromWishList,
-					changeProfilePicture: this.changeProfilePicture
+					changeProfilePicture: this.changeProfilePicture,
+					handleAccountDetailsModalOpen: this.handleAccountDetailsModalOpen,
+					handleAccountDetailsModalClose: this.handleAccountDetailsModalClose
 				}}>
 				{this.props.children}
 			</Context.Provider>

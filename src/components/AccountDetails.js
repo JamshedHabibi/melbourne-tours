@@ -1,77 +1,77 @@
 import React, {Component} from 'react';
-import {Grid, Icon, GridColumn} from 'semantic-ui-react';
+import {Modal, Icon, Form, Button, Grid} from 'semantic-ui-react';
 import {Consumer} from '../Context';
-import NavbarHomePage from './NavbarHomePage';
-import './AccountDetails.css';
+import './LoginModal.css';
 
 export default class AccountDetails extends Component {
 	render() {
 		return (
-			<div className="account-details-page">
-				<div>
-					<img
-						className="background-img"
-						width="1800"
-						style={{filter: 'brightness(30%)'}}
-						src="background.jpg"
-						alt=""
-					/>
-				</div>
-				<Grid className="ui container account-details-content ">
-					<Grid.Row style={{paddingLeft: '1vw', color: 'white'}}>
-						<h2>Account Details</h2>
-					</Grid.Row>
-					<Consumer>
-						{value => {
-							return (
-								<Grid.Row className="account-details-content-information">
-									<Grid.Column width={5}>
-										<Grid.Row>
-											<img src={value.photoURL} alt="avatar" width="240px" />
-										</Grid.Row>
-										<br />
-										<Grid.Row style={{paddingLeft: '2vw'}}>
-											<h3>Account Created On: </h3>
-											<div
-												style={{
-													fontSize: '1.3em',
-													color: 'rgb(0,0,0,0.4)',
-													position: 'relative',
-													left: '-2vw'
-												}}>
+			<Consumer>
+				{value => {
+					return (
+						<Modal
+							trigger={
+								<div onClick={value.handleAccountDetailsModalOpen}>
+									<Icon name="user" />
+									Account Details
+								</div>
+							}
+							open={value.accountDetailsModalOpen}
+							onClose={value.handleAccountDetailsModalClose}
+							className="login-modal">
+							<Modal.Content className="login-modal-heading">
+								<div>
+									<h2 style={{color: 'var(--mainBlue)'}}>Account Details</h2>
+								</div>
+								<br />
+							</Modal.Content>
+							<Modal.Content className="login-modal-form">
+								<Grid className="ui container">
+									<Grid.Row>
+										<Grid.Column width={16} textAlign="center">
+											<img src={value.photoURL} alt="avatar" width="180px" />
+										</Grid.Column>
+									</Grid.Row>
+
+									<br />
+									<Grid.Row>
+										<Grid.Column width={16} textAlign="center">
+											<h3 style={{color: 'var(--mainBlue)'}}>Account Created On</h3>
+											<div style={{fontSize: '1.2em', color: 'rgb(0,0,0,0.6)'}}>
 												{value.dateAccountCreated}
 											</div>
-										</Grid.Row>
-									</Grid.Column>
-									<Grid.Column width={10} style={{paddingTop: '3vh'}}>
-										<Grid.Row>
-											<h3>Last Signed In:</h3>
-										</Grid.Row>
-										<Grid.Row style={{fontSize: '1.3em', color: 'rgb(0,0,0,0.4)'}}>
-											{value.lastSignInDate}
-										</Grid.Row>
-										<br />
-										<Grid.Row>
-											<h3>Name:</h3>
-										</Grid.Row>
-										<Grid.Row style={{fontSize: '1.3em', color: 'rgb(0,0,0,0.4)'}}>
-											{value.name}
-										</Grid.Row>
-										<br />
-										<Grid.Row>
-											<h3>Email: </h3>
-										</Grid.Row>
-										<Grid.Row style={{fontSize: '1.3em', color: 'rgb(0,0,0,0.4)'}}>
-											{value.email}
-										</Grid.Row>
-									</Grid.Column>
-								</Grid.Row>
-							);
-						}}
-					</Consumer>
-				</Grid>
-				<NavbarHomePage />
-			</div>
+										</Grid.Column>
+									</Grid.Row>
+									<Grid.Row>
+										<Grid.Column width={16} textAlign="center">
+											<h3 style={{color: 'var(--mainBlue)'}}>Last Logged In</h3>
+											<div style={{fontSize: '1.2em', color: 'rgb(0,0,0,0.6)'}}>
+												{value.lastSignInDate}
+											</div>
+										</Grid.Column>
+									</Grid.Row>
+									<Grid.Row>
+										<Grid.Column width={16} textAlign="center">
+											<h3 style={{color: 'var(--mainBlue)'}}>Name</h3>
+											<div style={{fontSize: '1.2em', color: 'rgb(0,0,0,0.6)'}}>
+												{value.name}
+											</div>
+										</Grid.Column>
+									</Grid.Row>
+									<Grid.Row>
+										<Grid.Column width={16} textAlign="center">
+											<h3 style={{color: 'var(--mainBlue)'}}>Email</h3>
+											<div style={{fontSize: '1.2em', color: 'rgb(0,0,0,0.6)'}}>
+												{value.email}
+											</div>
+										</Grid.Column>
+									</Grid.Row>
+								</Grid>
+							</Modal.Content>
+						</Modal>
+					);
+				}}
+			</Consumer>
 		);
 	}
 }
