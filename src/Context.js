@@ -22,7 +22,9 @@ class Provider extends Component {
 		wishlist: [],
 		searchbarInput: [],
 		selectedTourToView: [],
-		filterPanelActivated: false
+		filterPanelActivated: false,
+		dateAccountCreated: '',
+		lastSignInDate: ''
 	};
 
 	componentDidMount() {
@@ -57,14 +59,22 @@ class Provider extends Component {
 					this.setState({
 						name: this.state.signUpName,
 						photoURL:
-							'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png'
+							'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png',
+						email: fire.auth().currentUser.providerData[0].email,
+						dateAccountCreated: fire.auth().currentUser.providerData[0].metadata
+							.creationTime,
+						lastSignInDate: fire.auth().currentUser.providerData[0].metadata
+							.lastSignInTime
 					});
 				});
 			} else if (user) {
-				this.setState({user}, () => console.log(user));
+				this.setState({user}, () => console.log(fire.auth().currentUser));
 				this.setState({
 					name: fire.auth().currentUser.providerData[0].displayName,
-					photoURL: fire.auth().currentUser.providerData[0].photoURL
+					photoURL: fire.auth().currentUser.providerData[0].photoURL,
+					email: fire.auth().currentUser.providerData[0].email,
+					dateAccountCreated: fire.auth().currentUser.metadata.creationTime,
+					lastSignInDate: fire.auth().currentUser.metadata.lastSignInTime
 				});
 			} else {
 				this.setState({user: null});
@@ -89,6 +99,11 @@ class Provider extends Component {
 			item.all_tags = item.name.toLowerCase().split(' ');
 			item.all_tags = item.all_tags.concat(item.tag_labels);
 		});
+	};
+
+	changeProfilePicture = () => {
+		let pictureInput = document.getElementById('image-file').value;
+		this.setState({photoURL: pictureInput}, () => console.log(pictureInput));
 	};
 
 	activateFilterPanel = () => {
@@ -280,7 +295,8 @@ class Provider extends Component {
 					searchbarFilter: this.searchbarFilter,
 					viewSelectedTour: this.viewSelectedTour,
 					activateFilterPanel: this.activateFilterPanel,
-					removeFromWishList: this.removeFromWishList
+					removeFromWishList: this.removeFromWishList,
+					changeProfilePicture: this.changeProfilePicture
 				}}>
 				{this.props.children}
 			</Context.Provider>

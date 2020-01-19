@@ -1,0 +1,17 @@
+.account-details-page {
+    height: 70vh;
+}
+
+.account-details-content {
+    position: relative;
+    top: -85vh;
+}
+
+.account-details-content-information {
+    position: relative;
+    top: 7vh;
+    background: rgb(196, 195, 195, 0.84);
+    border-radius: 3px;
+    padding: 30px;
+    width: 2vw;
+}

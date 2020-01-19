@@ -49,10 +49,12 @@ export default class NavbarLoginButton extends Component {
 			{
 				key: 1,
 				text: (
-					<div>
-						<Icon name="user" />
-						Account Details
-					</div>
+					<Link to="/account" style={{color: 'black'}}>
+						<div>
+							<Icon name="user" />
+							Account Details
+						</div>
+					</Link>
 				),
 				value: 1
 			},
