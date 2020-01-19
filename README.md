@@ -1,4 +1,4 @@
-# Real Estate Web Application
+# Melbourne Tours Web Application
 	Developed a web application, using React & JavaScript that allows users to effortlessly search for tours in Melbourne and filter the tours to select their ideal adventure. Live version can be viewed at - https://melbourne-tours.netlify.com
 
 # Tech/Framework Used
