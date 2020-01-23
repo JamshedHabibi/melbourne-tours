@@ -51,13 +51,14 @@ class Provider extends Component {
 					}
 				);
 			});
+
+		console.log(localStorage);
 	}
 	authListener() {
 		fire.auth().onAuthStateChanged(user => {
 			if (user && fire.auth().currentUser.providerData[0].displayName === null) {
 				this.setState({user}, () => {
 					//fire.auth().currentUser.providerData[0].displayName = this.state.signUpName; - Cannot assign to read-only property
-
 					console.log(localStorage);
 					this.setState({
 						name: localStorage.signUpName,
@@ -71,8 +72,8 @@ class Provider extends Component {
 			} else if (user) {
 				this.setState({
 					user,
-					name: user.displayName,
-					photoURL: user.photoURL,
+					name: fire.auth().currentUser.providerData[0].displayName,
+					photoURL: fire.auth().currentUser.providerData[0].photoURL,
 					email: user.email,
 					dateAccountCreated: user.metadata.creationTime,
 					lastSignInDate: user.metadata.lastSignInTime
@@ -160,9 +161,9 @@ class Provider extends Component {
 	addToWishList = tour => {
 		let currentWishList = this.state.wishlist;
 		currentWishList.push(tour);
-
+		localStorage.setItem('wishlist', JSON.stringify(currentWishList));
 		this.setState({wishlist: currentWishList}, () =>
-			console.log(this.state.wishlist)
+			console.log(this.state.wishlist, localStorage.wishlist)
 		);
 	};
 
