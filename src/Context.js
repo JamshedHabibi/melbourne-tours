@@ -62,20 +62,18 @@ class Provider extends Component {
 						photoURL:
 							'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png',
 						email: fire.auth().currentUser.providerData[0].email,
-						dateAccountCreated: fire.auth().currentUser.providerData[0].metadata
-							.creationTime,
-						lastSignInDate: fire.auth().currentUser.providerData[0].metadata
-							.lastSignInTime
+						dateAccountCreated: user.metadata.creationTime,
+						lastSignInDate: user.metadata.lastSignInTime
 					});
 				});
 			} else if (user) {
-				this.setState({user}, () => console.log(fire.auth().currentUser));
 				this.setState({
-					name: fire.auth().currentUser.providerData[0].displayName,
-					photoURL: fire.auth().currentUser.providerData[0].photoURL,
-					email: fire.auth().currentUser.providerData[0].email,
-					dateAccountCreated: fire.auth().currentUser.metadata.creationTime,
-					lastSignInDate: fire.auth().currentUser.metadata.lastSignInTime
+					user,
+					name: user.displayName,
+					photoURL: user.photoURL,
+					email: user.email,
+					dateAccountCreated: user.metadata.creationTime,
+					lastSignInDate: user.metadata.lastSignInTime
 				});
 			} else {
 				this.setState({user: null});
