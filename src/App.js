@@ -6,6 +6,7 @@ import {Switch, Route, withRouter} from 'react-router-dom';
 import AdventureDetails from './components/AdventureDetails';
 import Wishlist from './components/Wishlist';
 import AccountDetails from './components/AccountDetails';
+import NotFound from './components/NotFound';
 
 export default class App extends React.Component {
 	render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
 					<Route path="/details" component={AdventureDetails} />
 					<Route path="/wishlist" component={Wishlist} />
 					<Route path="/account" component={AccountDetails} />
+					<Route component={NotFound} />
 				</Switch>
 			</React.Fragment>
 		);

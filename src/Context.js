@@ -25,7 +25,7 @@ class Provider extends Component {
 		filterPanelActivated: false,
 		dateAccountCreated: '',
 		lastSignInDate: '',
-		accountDetailsModalOpen: true
+		accountDetailsModalOpen: false
 	};
 
 	componentDidMount() {
