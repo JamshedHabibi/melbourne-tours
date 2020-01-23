@@ -57,8 +57,10 @@ class Provider extends Component {
 			if (user && fire.auth().currentUser.providerData[0].displayName === null) {
 				this.setState({user}, () => {
 					//fire.auth().currentUser.providerData[0].displayName = this.state.signUpName; - Cannot assign to read-only property
+
+					console.log(localStorage);
 					this.setState({
-						name: this.state.signUpName,
+						name: localStorage.signUpName,
 						photoURL:
 							'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png',
 						email: fire.auth().currentUser.providerData[0].email,
@@ -268,6 +270,7 @@ class Provider extends Component {
 
 	signUp = e => {
 		e.preventDefault();
+		localStorage.setItem('signUpName', this.state.signUpName);
 		fire
 			.auth()
 			.createUserWithEmailAndPassword(this.state.email, this.state.password)
