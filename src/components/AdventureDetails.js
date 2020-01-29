@@ -4,15 +4,14 @@ import {
 	Breadcrumb,
 	Image,
 	Divider,
-	Icon,
 	List,
-	Rating,
 	Responsive
 } from 'semantic-ui-react';
 import {Consumer} from '../Context';
 import Navbar from './Navbar';
 import './AdventureDetails.css';
 import {Link} from 'react-router-dom';
+import BookNowModal from './BookNowModal';
 
 export default class AdventureDetails extends Component {
 	render() {
@@ -67,23 +66,9 @@ export default class AdventureDetails extends Component {
 														{selectedTourToView.price.currency}
 													</div>
 													per person
-													<a
-														as="a"
-														target="_blank"
-														href={selectedTourToView.vendor_tour_url}
-														rel="noreferrer">
-														<span className="adventure-details-view-now-button">
-															<span className="adventure-details-view-now-button-text">
-																Book now
-															</span>
-														</span>
-													</a>
+													<BookNowModal />
 												</h5>
 											</Grid.Row>
-											{/*<Grid.Row className="adventure-details-add-to-wishlist-button">
-											Add to Wishlist
-											<Rating icon="heart" defaultRating={1} maxRating={1} />
-                                                </Grid.Row>*/}
 										</Responsive>
 
 										<Grid.Row className="adventure-detail-highlights">
@@ -93,7 +78,7 @@ export default class AdventureDetails extends Component {
 												{selectedTourToView.highlights !== null ? (
 													selectedTourToView.highlights.map(highlight => {
 														return (
-															<List.Item>
+															<List.Item key={highlight}>
 																<List.Content>
 																	<p className="adventure-detail-subtitle-content">
 																		{' '}
@@ -139,23 +124,9 @@ export default class AdventureDetails extends Component {
 													{selectedTourToView.price.currency}
 												</div>
 												per person
-												<a
-													as="a"
-													target="_blank"
-													href={selectedTourToView.vendor_tour_url}
-													rel="noreferrer">
-													<span className="adventure-details-view-now-button">
-														<span className="adventure-details-view-now-button-text">
-															Book now
-														</span>
-													</span>
-												</a>
+												<BookNowModal />
 											</h5>
 										</Grid.Row>
-										{/*<Grid.Row className="adventure-details-add-to-wishlist-button">
-											Add to Wishlist
-											<Rating icon="heart" defaultRating={1} maxRating={1} />
-                                                </Grid.Row>*/}
 									</Responsive>
 								</Grid.Row>
 							</Grid>

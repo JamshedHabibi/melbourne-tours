@@ -49,7 +49,12 @@ export default class NavbarLoginButton extends Component {
 		const accountOptions = [
 			{
 				key: 1,
-				text: <AccountDetails />,
+				text: (
+					<Link to="/account" style={{color: 'black'}}>
+						<Icon name="user" />
+						Account Details
+					</Link>
+				),
 				value: 1
 			},
 			{

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Responsive, Modal} from 'semantic-ui-react';
+import {Grid, Responsive} from 'semantic-ui-react';
 import './Navbar.css';
 import NavbarLoginButton from './NavbarLoginButton';
 import {Consumer} from '../Context';
@@ -59,8 +59,7 @@ export default class NavbarHomePage extends Component {
 								textAlign="right"
 								floated="right"
 								width={8}
-								className="wide fluid"
-								className="navbar-login-btn-wrapper-smallscreen-homepage">
+								className="wide fluid navbar-login-btn-wrapper-smallscreen-homepage">
 								<NavbarLoginButton color="white" />
 							</Grid.Column>
 						</Grid.Row>

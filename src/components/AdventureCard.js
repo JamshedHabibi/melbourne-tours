@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 export default class AdventureCard extends Component {
 	render() {
-		const {vendor_tour_url, images, name, price, intro, id} = this.props.item;
+		const {images, name, price, intro, id} = this.props.item;
 		return (
 			<Consumer>
 				{context => {
@@ -41,7 +41,13 @@ export default class AdventureCard extends Component {
 											{!context.wishlist.find(item => item.id === id) ? (
 												<p
 													style={{cursor: 'pointer'}}
-													onClick={() => context.addToWishList(this.props.item)}>
+													onClick={() => {
+														if (context.user !== null) {
+															context.addToWishList(this.props.item);
+														} else {
+															context.handleLogInModalOpen();
+														}
+													}}>
 													<span>
 														<Icon name="heart" />
 													</span>{' '}

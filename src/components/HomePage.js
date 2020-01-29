@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Search, Grid} from 'semantic-ui-react';
+import {Grid} from 'semantic-ui-react';
 import './HomePage.css';
 import {Link} from 'react-router-dom';
 import NavbarHomePage from './NavbarHomePage';

@@ -1,17 +1,44 @@
 .account-details-page {
-    height: 70vh;
+    position: relative;
+    top: 11.5vh;
 }
 
-.account-details-content {
+.account-details-page-content {
     position: relative;
-    top: -85vh;
+    top: 13vh;
 }
 
-.account-details-content-information {
+.account-details-page-info {
     position: relative;
-    top: 7vh;
-    background: rgb(196, 195, 195, 0.84);
-    border-radius: 3px;
-    padding: 30px;
-    width: 2vw;
+    top: 3vh;
+    border: 1px solid rgba(0, 0, 0, 0.219) !important;
+    border-radius: 10px !important;
+    width: 73vw !important;
+    padding: 10px !important;
+}
+
+.account-details-page-info-content {
+    padding-left: 4vw !important;
+
+}
+
+.account-details-please-log-in-response {
+    position: relative;
+    top: 20vh;
+    font-size: 1.8em;
+    color: rgb(0, 0, 0, 0.4);
+}
+
+.account-details-page-info-content-header {
+    font-size: 1em !important;
+    letter-spacing: 0.04em;
+}
+
+.account-details-page-info-content-bio {
+    font-size: 1.3em !important;
+}
+
+.edit-account-bio {
+    position: relative;
+    top: -2.5vh;
 }

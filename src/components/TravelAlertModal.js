@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Button, Icon, Header} from 'semantic-ui-react';
+import {Modal, Icon, Header} from 'semantic-ui-react';
 import './TravelAlertModal.css';
 export default class TravelAlertModal extends Component {
 	render() {
@@ -16,17 +16,23 @@ export default class TravelAlertModal extends Component {
 					TRAVEL ALERT
 				</Header>
 
-				<Modal.Content textAlign="center" className="travel-alert-modal-content">
+				<Modal.Content className="travel-alert-modal-content">
 					<p>
 						Bushfires are currently impacting Victoria's East Gippsland and High
 						Country regions. However, many parts of the State are unaffected by the
 						fires at this time and are welcoming visitors. For all incidents and
 						warnings see:{'   '}
-						<a target="_blank" href="http://www.emergency.vic.gov.au/respond/">
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="http://www.emergency.vic.gov.au/respond/">
 							emergency.vic.gov.au.
 						</a>{' '}
 						Stay up to date on road closures at:{'  '}
-						<a target="_blank" href="https://traffic.vicroads.vic.gov.au/">
+						<a
+							target="_blank"
+							href="https://traffic.vicroads.vic.gov.au/"
+							rel="noopener noreferrer">
 							traffic.vicroads.vic.gov.au.
 						</a>
 					</p>

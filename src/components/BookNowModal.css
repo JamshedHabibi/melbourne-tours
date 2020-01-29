@@ -1,0 +1,49 @@
+.book-now-modal-heading {
+    text-align: center;
+}
+
+.book-now-modal-name {
+    text-align: center;
+}
+
+.book-now-modal-date-selector-wrapper {
+    background: var(--mainBlue);
+    padding: 12px;
+    border-radius: 10px;
+    position: relative;
+    top: -3vh
+}
+
+.book-now-modal-date-selector-input {
+    padding-left: 1em;
+    color: rgba(0, 0, 0, 0.534);
+}
+
+
+.book-now-modal-book-button {
+    background: var(--mainOrange) !important;
+    color: rgb(255, 251, 251) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.book-now-modal-book-button:hover {
+    background: var(--hoverOrange) !important;
+    color: rgb(255, 251, 251) !important;
+}
+
+.participant-number-btn {
+    padding: 8px 14px 8px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.247);
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.participant-number-btn:hover {
+    background: var(--mainOrange);
+    color: white;
+}
+
+.book-now-modal-total-price {
+    font-size: 1.3em;
+}

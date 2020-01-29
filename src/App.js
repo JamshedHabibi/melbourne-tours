@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HomePage from './components/HomePage';
 import Adventures from './components/Adventures';
-import {Switch, Route, withRouter} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import AdventureDetails from './components/AdventureDetails';
 import Wishlist from './components/Wishlist';
 import AccountDetails from './components/AccountDetails';

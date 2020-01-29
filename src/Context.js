@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import fire from './config/Fire';
+import {fire, db} from './config/Fire';
+import firebase from 'firebase';
+import {Form, Button} from 'semantic-ui-react';
 
 const Context = React.createContext();
 
@@ -13,6 +15,7 @@ class Provider extends Component {
 		password: '',
 		logInModalOpen: false,
 		signUpModalOpen: false,
+		bookNowModalOpen: false,
 		apiIsLoaded: false,
 		apiTours: [],
 		adventures: [],
@@ -25,7 +28,15 @@ class Provider extends Component {
 		filterPanelActivated: false,
 		dateAccountCreated: '',
 		lastSignInDate: '',
-		accountDetailsModalOpen: false
+		verified: false,
+		accountDetailsModalOpen: false,
+		verificationModalOpen: false,
+		fireStoreUserData: [],
+		tourParticipantCount: 1,
+		bookedTours: [],
+		totalTourCost: 0,
+		accountBio: 'No bio',
+		editAccountBioActivated: false
 	};
 
 	componentDidMount() {
@@ -47,28 +58,53 @@ class Provider extends Component {
 					() => {
 						this.setTagsToEachTour();
 						this.setCostToEachTour();
-						this.setState({selectedTourToView: this.state.adventures[0]});
+						this.setState({selectedTourToView: this.state.adventures[0]}, () => {
+							let tourCost = parseFloat(
+								this.state.selectedTourToView.price.amount
+							).toFixed(2);
+							this.setState({
+								totalTourCost: tourCost
+							});
+						});
 					}
 				);
 			});
-
-		console.log(localStorage);
 	}
+
+	renderAccount = user => {
+		db
+			.collection('users')
+			.get()
+			.then(snapshot => {
+				snapshot.docs.find(doc => {
+					if (doc.data().id === fire.auth().currentUser.providerData[0].uid) {
+						this.setState({fireStoreUserData: doc.data()}, () => {
+							this.setState(
+								{
+									user,
+									name: this.state.fireStoreUserData.name,
+									photoURL:
+										'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png',
+									email: this.state.fireStoreUserData.email,
+									dateAccountCreated: user.metadata.creationTime,
+									lastSignInDate: user.metadata.lastSignInTime,
+									verified: user.emailVerified,
+									wishlist: this.state.fireStoreUserData.wishlist,
+									bookedTours: this.state.fireStoreUserData.bookedTours,
+									accountBio: this.state.fireStoreUserData.bio
+								},
+								() => console.log(user, this.state)
+							);
+						});
+					}
+				});
+			});
+	};
+
 	authListener() {
 		fire.auth().onAuthStateChanged(user => {
 			if (user && fire.auth().currentUser.providerData[0].displayName === null) {
-				this.setState({user}, () => {
-					//fire.auth().currentUser.providerData[0].displayName = this.state.signUpName; - Cannot assign to read-only property
-					console.log(localStorage);
-					this.setState({
-						name: localStorage.signUpName,
-						photoURL:
-							'https://png.pngtree.com/svg/20161027/service_default_avatar_182956.png',
-						email: fire.auth().currentUser.providerData[0].email,
-						dateAccountCreated: user.metadata.creationTime,
-						lastSignInDate: user.metadata.lastSignInTime
-					});
-				});
+				this.renderAccount(user);
 			} else if (user) {
 				this.setState({
 					user,
@@ -76,13 +112,135 @@ class Provider extends Component {
 					photoURL: fire.auth().currentUser.providerData[0].photoURL,
 					email: user.email,
 					dateAccountCreated: user.metadata.creationTime,
-					lastSignInDate: user.metadata.lastSignInTime
+					lastSignInDate: user.metadata.lastSignInTime,
+					verified: user.metadata.emailVerified
 				});
 			} else {
 				this.setState({user: null});
 			}
 		});
 	}
+
+	signUp = e => {
+		e.preventDefault();
+		fire
+			.auth()
+			.createUserWithEmailAndPassword(this.state.email, this.state.password)
+			.then(u => {})
+			.then(() => {
+				this.sendEmailVerification();
+				db
+					.collection('users')
+					.doc(`${fire.auth().currentUser.providerData[0].uid}`)
+					.set({
+						id: fire.auth().currentUser.providerData[0].uid,
+						name: this.state.signUpName,
+						email: fire.auth().currentUser.providerData[0].email,
+						wishlist: [],
+						bookedTours: [],
+						bio: 'No Bio'
+					});
+
+				this.handleVerificationModalOpen();
+			})
+
+			.catch(error => {
+				console.log(error);
+				document.getElementById('sign-up-error-message').innerHTML = error;
+			});
+	};
+
+	sendEmailVerification = () => {
+		var user = firebase.auth().currentUser;
+
+		user
+			.sendEmailVerification()
+			.then(function() {
+				console.log('Verification Email Sent');
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+	};
+
+	logIn = e => {
+		e.preventDefault();
+		fire
+			.auth()
+			.signInWithEmailAndPassword(this.state.email, this.state.password)
+			.then(u => {})
+			.catch(error => {
+				console.log(error);
+				document.getElementById('login-error-message').innerHTML = error;
+			});
+	};
+
+	logOut = () => {
+		fire.auth().signOut();
+		this.setState({
+			user: null,
+			name: 0,
+			email: '',
+			password: '',
+			signUpModalOpen: false,
+			logInModalOpen: false,
+			wishlist: []
+		});
+	};
+
+	addToWishList = tour => {
+		let currentWishList = this.state.wishlist;
+		currentWishList.push(tour);
+		db
+			.collection('users')
+			.doc(`${fire.auth().currentUser.providerData[0].uid}`)
+			.set(
+				{
+					wishlist: currentWishList
+				},
+				{merge: true}
+			);
+		db
+			.collection('users')
+			.get()
+			.then(snapshot => {
+				snapshot.docs.find(doc => {
+					if (doc.data().id === fire.auth().currentUser.providerData[0].uid) {
+						this.setState({fireStoreUserData: doc.data()}, () => {
+							this.setState({wishlist: this.state.fireStoreUserData.wishlist});
+						});
+					}
+				});
+			});
+	};
+
+	removeFromWishList = tour => {
+		let currentWishList = this.state.wishlist;
+		let foundTour = currentWishList.find(item => item.id === tour.id);
+		currentWishList.splice(currentWishList.indexOf(foundTour), 1);
+
+		db
+			.collection('users')
+			.doc(`${fire.auth().currentUser.providerData[0].uid}`)
+			.set(
+				{
+					wishlist: currentWishList
+				},
+				{merge: true}
+			);
+		db
+			.collection('users')
+			.get()
+			.then(snapshot => {
+				snapshot.docs.find(doc => {
+					if (doc.data().id === fire.auth().currentUser.providerData[0].uid) {
+						this.setState({fireStoreUserData: doc.data()}, () => {
+							this.setState({wishlist: this.state.fireStoreUserData.wishlist});
+						});
+					}
+				});
+			});
+	};
 
 	setCostToEachTour = () => {
 		let originalSort = this.state.adventures;
@@ -91,9 +249,7 @@ class Provider extends Component {
 			item.cost = price[0];
 			price.shift();
 		});
-		this.setState({adventures: originalSort}, () =>
-			console.log(this.state.adventures, this.state.apiTours)
-		);
+		this.setState({adventures: originalSort});
 	};
 
 	setTagsToEachTour = () => {
@@ -101,11 +257,6 @@ class Provider extends Component {
 			item.all_tags = item.name.toLowerCase().split(' ');
 			item.all_tags = item.all_tags.concat(item.tag_labels);
 		});
-	};
-
-	changeProfilePicture = () => {
-		let pictureInput = document.getElementById('image-file').value;
-		this.setState({photoURL: pictureInput}, () => console.log(pictureInput));
 	};
 
 	activateFilterPanel = () => {
@@ -122,9 +273,7 @@ class Provider extends Component {
 	};
 
 	viewSelectedTour = item => {
-		this.setState({selectedTourToView: item}, () => {
-			console.log(this.state.selectedTourToView);
-		});
+		this.setState({selectedTourToView: item});
 	};
 
 	searchbarFilter = () => {
@@ -135,7 +284,6 @@ class Provider extends Component {
 			.filter(word => word.length !== 0);
 
 		this.setState({searchbarInput: searchbarInput}, () => {
-			console.log(this.state.searchbarInput);
 			let tourListings = this.state.apiTours;
 			let filteredTours = [];
 			for (let i = 0; i < tourListings.results.length; i++) {
@@ -156,22 +304,6 @@ class Provider extends Component {
 			}
 			this.setState({adventures: filteredTours});
 		});
-	};
-
-	addToWishList = tour => {
-		let currentWishList = this.state.wishlist;
-		currentWishList.push(tour);
-		localStorage.setItem('wishlist', JSON.stringify(currentWishList));
-		this.setState({wishlist: currentWishList}, () =>
-			console.log(this.state.wishlist, localStorage.wishlist)
-		);
-	};
-
-	removeFromWishList = tour => {
-		let currentWishList = this.state.wishlist;
-		let foundTour = currentWishList.find(item => item.id === tour.id);
-		currentWishList.splice(currentWishList.indexOf(foundTour), 1);
-		this.setState({wishlist: currentWishList});
 	};
 
 	tourPriceFilter = () => {
@@ -228,11 +360,113 @@ class Provider extends Component {
 		this.setState({adventures: originalSort});
 	};
 
+	incrementParticipantCount = () => {
+		let newCount = this.state.tourParticipantCount + 1;
+		let totalTourCost = parseFloat(
+			newCount * this.state.selectedTourToView.price.amount
+		).toFixed(2);
+		this.setState(
+			{tourParticipantCount: newCount, totalTourCost: totalTourCost},
+			() => {
+				console.log(this.state.selectedTourToView);
+			}
+		);
+	};
+
+	decrementParticipantCount = () => {
+		if (this.state.tourParticipantCount > 1) {
+			let newCount = this.state.tourParticipantCount - 1;
+			let totalTourCost = parseFloat(
+				newCount * this.state.selectedTourToView.price.amount
+			).toFixed(2);
+			this.setState(
+				{
+					tourParticipantCount: newCount,
+					totalTourCost: totalTourCost
+				},
+				() => console.log(this.state.selectedTourToView)
+			);
+		}
+	};
+
+	bookTour = () => {
+		let currentBookedTours = this.state.bookedTours;
+		this.state.selectedTourToView.totalBookedCost = this.state.totalTourCost;
+		this.state.selectedTourToView.participants = this.state.tourParticipantCount;
+		currentBookedTours.push(this.state.selectedTourToView);
+		db
+			.collection('users')
+			.doc(`${fire.auth().currentUser.providerData[0].uid}`)
+			.set(
+				{
+					bookedTours: currentBookedTours
+				},
+				{merge: true}
+			);
+		db
+			.collection('users')
+			.get()
+			.then(snapshot => {
+				snapshot.docs.find(doc => {
+					if (doc.data().id === fire.auth().currentUser.providerData[0].uid) {
+						this.setState({fireStoreUserData: doc.data()}, () => {
+							this.setState(
+								{bookedTours: this.state.fireStoreUserData.bookedTours},
+								() => console.log(this.state.fireStoreUserData.bookedTours)
+							);
+						});
+					}
+				});
+			});
+	};
+
+	changeAccountBio = () => {
+		console.log('changing account bio');
+		let currentSetting = this.state.editAccountBioActivated;
+		this.setState({editAccountBioActivated: !currentSetting});
+	};
+
+	submitNewBio = () => {
+		db
+			.collection('users')
+			.doc(`${fire.auth().currentUser.providerData[0].uid}`)
+			.set(
+				{
+					bio: this.state.accountBio
+				},
+				{merge: true}
+			);
+		db
+			.collection('users')
+			.get()
+			.then(snapshot => {
+				snapshot.docs.find(doc => {
+					if (doc.data().id === fire.auth().currentUser.providerData[0].uid) {
+						this.setState({fireStoreUserData: doc.data()}, () => {
+							this.setState({accountBio: this.state.fireStoreUserData.bio}, () =>
+								console.log(this.state.fireStoreUserData)
+							);
+						});
+					}
+				});
+			});
+		this.changeAccountBio();
+	};
+
 	handleLogInModalOpen = () => this.setState({logInModalOpen: true});
 	handleLogInModalClose = () => this.setState({logInModalOpen: false});
 
 	handleSignUpModalOpen = () => this.setState({signUpModalOpen: true});
 	handleSignUpModalClose = () => this.setState({signUpModalOpen: false});
+
+	handleBookNowModalOpen = () => this.setState({bookNowModalOpen: true});
+	handleBookNowModalClose = () => this.setState({bookNowModalOpen: false});
+
+	handleVerificationModalOpen = () => {
+		this.setState({verificationModalOpen: true});
+	};
+	handleVerificationModalClose = () =>
+		this.setState({verificationModalOpen: false});
 
 	handleAccountDetailsModalOpen = () =>
 		this.setState({accountDetailsModalOpen: true});
@@ -242,44 +476,8 @@ class Provider extends Component {
 	handleChange = e => {
 		this.setState({[e.target.name]: e.target.value}, () => {
 			this.tourPriceFilter();
+			console.log();
 		});
-	};
-
-	logIn = e => {
-		e.preventDefault();
-		fire
-			.auth()
-			.signInWithEmailAndPassword(this.state.email, this.state.password)
-			.then(u => {})
-			.catch(error => {
-				console.log(error);
-				document.getElementById('login-error-message').innerHTML = error;
-			});
-	};
-
-	logOut = () => {
-		fire.auth().signOut();
-		this.setState({
-			user: null,
-			name: 0,
-			email: '',
-			password: '',
-			signUpModalOpen: false,
-			logInModalOpen: false
-		});
-	};
-
-	signUp = e => {
-		e.preventDefault();
-		localStorage.setItem('signUpName', this.state.signUpName);
-		fire
-			.auth()
-			.createUserWithEmailAndPassword(this.state.email, this.state.password)
-			.then(u => {})
-			.catch(error => {
-				console.log(error);
-				document.getElementById('sign-up-error-message').innerHTML = error;
-			});
 	};
 
 	render() {
@@ -306,7 +504,16 @@ class Provider extends Component {
 					removeFromWishList: this.removeFromWishList,
 					changeProfilePicture: this.changeProfilePicture,
 					handleAccountDetailsModalOpen: this.handleAccountDetailsModalOpen,
-					handleAccountDetailsModalClose: this.handleAccountDetailsModalClose
+					handleAccountDetailsModalClose: this.handleAccountDetailsModalClose,
+					handleBookNowModalOpen: this.handleBookNowModalOpen,
+					handleBookNowModalClose: this.handleBookNowModalClose,
+					handleVerificationModalClose: this.handleVerificationModalClose,
+					handleVerificationModalOpen: this.handleVerificationModalOpen,
+					incrementParticipantCount: this.incrementParticipantCount,
+					decrementParticipantCount: this.decrementParticipantCount,
+					bookTour: this.bookTour,
+					changeAccountBio: this.changeAccountBio,
+					submitNewBio: this.submitNewBio
 				}}>
 				{this.props.children}
 			</Context.Provider>

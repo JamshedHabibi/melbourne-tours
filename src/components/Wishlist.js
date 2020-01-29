@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Consumer} from '../Context';
-import LogInModal from './LogInModal';
 import Navbar from './Navbar';
 import './Wishlist.css';
 import {Grid, Breadcrumb, Item} from 'semantic-ui-react';
@@ -36,6 +35,14 @@ export default class Wishlist extends Component {
 												<p className="wishlist-error-message">
 													Please log in to view your wishlist
 												</p>
+											</Grid.Column>
+										</Grid.Row>
+									</Grid>
+								) : value.verified === false ? (
+									<Grid>
+										<Grid.Row>
+											<Grid.Column textAlign="center" width={16}>
+												<p className="wishlist-error-message">Please verify your account</p>
 											</Grid.Column>
 										</Grid.Row>
 									</Grid>

@@ -38,7 +38,7 @@
 }
 
 .adventure-details-view-now-button:hover {
-    background: rgb(184, 120, 0);
+    background: var(--hoverOrange)
 }
 
 .adventure-detail-highlights {

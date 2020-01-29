@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import {Item, Grid, Icon} from 'semantic-ui-react';
 import {Consumer} from '../Context';
 import {Link} from 'react-router-dom';
+import './BookedToursCard.css';
 
 export default class AdventureCard extends Component {
 	render() {
-		const {images, name, price, intro, id} = this.props.item;
+		const {images, name, intro, totalBookedCost, participants} = this.props.item;
 		return (
 			<Consumer>
 				{context => {
 					return (
-						<Item className="adventure-item">
+						<Item className="booked-tours-item">
 							<Item.Content>
 								<Grid padded>
 									<Grid.Column width={6}>
@@ -20,7 +21,7 @@ export default class AdventureCard extends Component {
 											<Item.Image size="medium" src={images[0].source_url} />
 										</Link>
 									</Grid.Column>
-									<Grid.Column width={10}>
+									<Grid.Column width={5}>
 										<Link
 											to="/details"
 											onClick={() => context.viewSelectedTour(this.props.item)}>
@@ -32,34 +33,23 @@ export default class AdventureCard extends Component {
 												}}>
 												{intro}
 											</Item.Description>
-											<Item.Extra>
-												{price.amount}
-												<span> {price.currency}</span>
-											</Item.Extra>
 										</Link>
-										<Item.Extra>
-											<Item.Group relaxed>
-												{!context.wishlist.find(item => item.id === id) ? (
-													<p
-														style={{cursor: 'pointer'}}
-														onClick={() => context.addToWishList(this.props.item)}>
-														<span>
-															<Icon name="heart" />
-														</span>{' '}
-														Add to Wishlist
-													</p>
-												) : (
-													<p
-														style={{cursor: 'pointer'}}
-														onClick={() => context.removeFromWishList(this.props.item)}>
-														<span>
-															<Icon name="heart" style={{color: 'red'}} />
-														</span>{' '}
-														Remove from Wishlist
-													</p>
-												)}
-											</Item.Group>
-										</Item.Extra>
+									</Grid.Column>
+									<Grid.Column width={5} floated="right" className="wide fluid">
+										<Item.Header>
+											<h3>Order Details: </h3>
+										</Item.Header>
+										<br />
+										<Item.Description>
+											<Grid.Row style={{color: 'var(--mainBlue)'}}>
+												<strong>Total Cost:</strong>
+											</Grid.Row>
+											<Grid.Row>{totalBookedCost} AUD</Grid.Row>
+											<Grid.Row style={{color: 'var(--mainBlue)'}}>
+												<strong>Participants:</strong>
+											</Grid.Row>
+											<Grid.Row>x{participants}</Grid.Row>
+										</Item.Description>
 									</Grid.Column>
 								</Grid>
 							</Item.Content>
