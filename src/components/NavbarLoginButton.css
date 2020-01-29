@@ -8,11 +8,6 @@
     top: -14px;
 }
 
-.navbar-login-btn-signed-in {
-    position: relative;
-    left: 12vw;
-    top: -3vh !important;
-}
 
 .navbar-login-btn {
     border: none !important;
@@ -30,4 +25,18 @@
     top: -15px;
     background: transparent !important;
     color: white !important;
+}
+
+@media screen and (max-width: 680px) {
+    .navbar-login-btn-signed-in {
+        position: relative;
+        left: -10vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .navbar-login-btn-signed-in {
+        position: relative;
+        left: -22vw;
+    }
 }

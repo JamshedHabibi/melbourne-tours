@@ -97,9 +97,24 @@ export default class NavbarLoginButton extends Component {
 							/>
 						</Menu>
 					) : (
-						<div className="navbar-login-btn">
-							<LogInModal color={this.props.color} />
-						</div>
+						<Menu compact className="navbar-login-btn">
+							<Dropdown text={loginIcon} simple item style={{color: this.props.color}}>
+								<Dropdown.Menu>
+									<Dropdown.Item>
+										<LogInModal />
+									</Dropdown.Item>
+
+									<Dropdown.Item>
+										<div>
+											<Link to="/wishlist" style={{color: 'black'}}>
+												<Icon name="heart" />
+												Wishlist
+											</Link>
+										</div>
+									</Dropdown.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+						</Menu>
 					);
 				}}
 			</Consumer>
