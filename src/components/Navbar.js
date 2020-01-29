@@ -28,7 +28,7 @@ export default class Navbar extends Component {
 						width={8}
 						className="wide fluid">
 						<div className="login-signup-btns">
-							<span className="wide fluid travel-alert-button">
+							<span className="travel-alert-button">
 								<TravelAlertModal color="black" />
 							</span>
 							<span className="navbar-login-btn-wrapper">
@@ -46,13 +46,7 @@ export default class Navbar extends Component {
 							</Consumer>
 						</div>
 					</Responsive>
-					<Responsive
-						as={Grid.Column}
-						maxWidth={710}
-						textAlign="right"
-						floated="right"
-						width={8}
-						className="wide fluid">
+					<Responsive as={Grid.Column} maxWidth={710} width={8}>
 						<Grid.Row>
 							<Grid.Column
 								width={8}

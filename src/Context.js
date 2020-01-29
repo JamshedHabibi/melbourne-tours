@@ -412,7 +412,10 @@ class Provider extends Component {
 						this.setState({fireStoreUserData: doc.data()}, () => {
 							this.setState(
 								{bookedTours: this.state.fireStoreUserData.bookedTours},
-								() => console.log(this.state.fireStoreUserData.bookedTours)
+								() => {
+									console.log(this.state.fireStoreUserData.bookedTours);
+									this.setState({tourParticipantCount: 1});
+								}
 							);
 						});
 					}
@@ -513,7 +516,8 @@ class Provider extends Component {
 					decrementParticipantCount: this.decrementParticipantCount,
 					bookTour: this.bookTour,
 					changeAccountBio: this.changeAccountBio,
-					submitNewBio: this.submitNewBio
+					submitNewBio: this.submitNewBio,
+					sendEmailVerification: this.sendEmailVerification
 				}}>
 				{this.props.children}
 			</Context.Provider>

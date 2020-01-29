@@ -45,7 +45,8 @@
 
 .travel-alert-button {
     position: relative;
-    right: 275px;
+    right: 270px;
+    width: 1%;
     top: 4vh;
     color: white;
     z-index: 1;
@@ -83,7 +84,7 @@
 .travel-alert-button-smallscreen {
     position: relative;
     top: 10vh;
-    left: -120%;
+    left: -95%;
     color: white;
     z-index: 1;
     cursor: pointer;
@@ -92,7 +93,7 @@
 .navbar-login-btn-wrapper-smallscreen {
     position: relative;
     top: -3vh;
-    right: 10%;
+    right: -30%;
 }
 
 @media screen and (max-width: 710px) {

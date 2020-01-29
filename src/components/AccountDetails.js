@@ -89,7 +89,9 @@ export default class AccountDetails extends Component {
 															<Grid.Row>
 																<h3 style={{color: 'var(--mainBlue)'}}>Verified</h3>
 															</Grid.Row>
-															<Grid.Row>{value.verified.toString()}</Grid.Row>
+															<Grid.Row style={{textTransform: 'capitalize'}}>
+																{value.verified.toString()}
+															</Grid.Row>
 														</Grid.Column>
 
 														<Grid.Column width={8}>
@@ -105,11 +107,26 @@ export default class AccountDetails extends Component {
 														</Grid.Column>
 													</Grid>
 												</Item.Description>
-												<Item.Extra>
-													{value.verified === false
-														? 'Please verify account to access all features'
-														: ''}
-												</Item.Extra>
+												{value.verified === false ? (
+													<React.Fragment>
+														<Item.Extra>
+															Please verify account to access all features
+														</Item.Extra>
+														<Item.Description>
+															<Button
+																onClick={() => {
+																	value.sendEmailVerification();
+																	document.getElementById('resend-verification').innerHTML =
+																		'Sent! Please check your email.';
+																}}>
+																Resend Email Verification
+															</Button>
+															<div id="resend-verification"></div>
+														</Item.Description>
+													</React.Fragment>
+												) : (
+													<React.Fragment></React.Fragment>
+												)}
 											</Item.Content>
 										</Item>
 									</Item.Group>

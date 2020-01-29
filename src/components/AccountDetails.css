@@ -42,3 +42,7 @@
     position: relative;
     top: -2.5vh;
 }
+
+#resend-verification {
+    color: green;
+}
