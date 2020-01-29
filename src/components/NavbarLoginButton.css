@@ -31,7 +31,3 @@
     background: transparent !important;
     color: white !important;
 }
-
-@media screen and (max-width: 710px) {
-    .navbar-login-btn-text {}
-}

@@ -54,14 +54,14 @@ export default class NavbarHomePage extends Component {
 								width={8}
 								textAlign="left"
 								floated="left"
-								className="wide-fluid travel-alert-button-smallscreen-homepage">
+								className="wide-fluid travel-alert-button-smallscreen">
 								<TravelAlertModal color="white" />
 							</Grid.Column>
 							<Grid.Column
 								textAlign="right"
 								floated="right"
 								width={8}
-								className="wide fluid navbar-login-btn-wrapper-smallscreen-homepage">
+								className="wide fluid navbar-login-btn-wrapper-smallscreen">
 								<NavbarLoginButton color="white" />
 							</Grid.Column>
 						</Grid.Row>

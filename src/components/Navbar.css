@@ -74,21 +74,6 @@
     background: rgb(202, 151, 32);
 }
 
-.travel-alert-button-smallscreen-homepage {
-    position: relative;
-    top: 10vh;
-    left: -95%;
-    color: white;
-    z-index: 1;
-    cursor: pointer;
-}
-
-.navbar-login-btn-wrapper-smallscreen-homepage {
-    position: relative;
-    top: -3vh;
-    right: -30%;
-}
-
 .travel-alert-button-smallscreen {
     position: relative;
     top: 10vh;
@@ -100,8 +85,20 @@
 
 .navbar-login-btn-wrapper-smallscreen {
     position: relative;
-    top: -3vh;
-    right: -30%;
+    top: -1.2vh;
+    right: -40%;
+}
+
+@media screen and (max-width: 1100px) {
+    .navbar-login-btn-wrapper {
+        left: -12vw;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .navbar-login-btn-wrapper {
+        left: -15vw;
+    }
 }
 
 @media screen and (max-width: 710px) {

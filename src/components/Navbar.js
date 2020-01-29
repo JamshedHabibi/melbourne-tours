@@ -59,7 +59,7 @@ export default class Navbar extends Component {
 								textAlign="right"
 								floated="right"
 								width={8}
-								className=" wide fluid navbar-login-btn-wrapper-smallscreen">
+								className="wide fluid navbar-login-btn-wrapper-smallscreen">
 								<NavbarLoginButton color="black" />
 							</Grid.Column>
 						</Grid.Row>
