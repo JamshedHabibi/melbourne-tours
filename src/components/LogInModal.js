@@ -24,7 +24,9 @@ export default class LogInModal extends Component {
 					return (
 						<Modal
 							trigger={
-								<div onClick={value.handleLogInModalOpen}>
+								<div
+									onClick={value.handleLogInModalOpen}
+									style={{color: this.props.color}}>
 									<Icon name="user" />
 									Log In
 								</div>

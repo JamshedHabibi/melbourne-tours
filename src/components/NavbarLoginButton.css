@@ -6,7 +6,12 @@
     padding-left: 10px;
     position: relative;
     top: -14px;
+}
 
+.navbar-login-btn-signed-in {
+    position: relative;
+    left: 12vw;
+    top: -3vh !important;
 }
 
 .navbar-login-btn {

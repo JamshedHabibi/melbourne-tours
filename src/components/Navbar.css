@@ -36,11 +36,19 @@
 .login-signup-btns {
     position: relative;
     left: -7vw;
-    top: -2.8vh;
+    top: -2.2vh;
+}
+
+.navbar-login-btn-wrapper {
+    position: relative;
+    left: -10vw;
+    top: 1vh;
 }
 
 .navbar-sign-up-btn {
     padding-left: 2vw;
+    position: relative;
+    top: -1.5vh;
 }
 
 .travel-alert-button {

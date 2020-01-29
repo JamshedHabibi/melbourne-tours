@@ -35,15 +35,17 @@ export default class NavbarHomePage extends Component {
 								<NavbarLoginButton color="white" />
 							</span>
 
-							<Consumer>
-								{value => {
-									return !value.user ? (
-										<SignUpModal />
-									) : (
-										<React.Fragment></React.Fragment>
-									);
-								}}
-							</Consumer>
+							<span>
+								<Consumer>
+									{value => {
+										return !value.user ? (
+											<SignUpModal />
+										) : (
+											<React.Fragment></React.Fragment>
+										);
+									}}
+								</Consumer>
+							</span>
 						</div>
 					</Responsive>
 					<Responsive width={8} as={Grid.Column} maxWidth={710}>
