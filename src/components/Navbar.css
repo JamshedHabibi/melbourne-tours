@@ -1,113 +1,109 @@
 .navbar-wrapper-home {
-    position: absolute;
-    left: 0;
-    top: -2.5vh;
-    width: 102.5vw;
-    height: 13vh;
-    border: rgba(255, 255, 255, 0.3) 1px solid;
-    background-color: transparent
+  position: absolute;
+  left: 0;
+  top: -2.5vh;
+  width: 102.5vw;
+  height: 13vh;
+  border: rgba(255, 255, 255, 0.3) 1px solid;
+  background-color: transparent;
 }
 
 .navbar-wrapper {
-    position: absolute;
-    left: 0;
-    top: -12vh;
-    width: 102.5vw;
-    height: 13vh;
-    border: rgba(0, 0, 0, 0.11) 1px solid;
+  position: absolute;
+  left: 0;
+  top: -12vh;
+  width: 102.5vw;
+  height: 13vh;
+  border: rgba(0, 0, 0, 0.11) 1px solid;
 }
 
 .navbar-content {
-    font-size: 1.1em;
-    position: relative;
-    top: 17%;
+  font-size: 1.1em;
+  position: relative;
+  top: 17%;
 }
 
 .navbar-home-icon {
-    width: 280px;
-    position: relative;
-    top: -2.5vh;
+  width: 280px;
+  position: relative;
+  top: -2.5vh;
 }
 
 .navbar-home-icon-tours {
-    color: var(--mainOrange);
+  color: var(--mainOrange);
 }
 
 .login-signup-btns {
-    position: relative;
-    left: -7vw;
-    top: -2.2vh;
+  position: relative;
+  left: -7vw;
+  top: -2.2vh;
 }
 
 .navbar-login-btn-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .navbar-sign-up-btn {
-    padding-left: 2vw;
-
+  padding-left: 2vw;
 }
 
 .travel-alert-button {
-    position: relative;
-    right: 270px;
-    width: 1%;
-    top: 4vh;
-    color: white;
-    z-index: 1;
-    cursor: pointer;
+  position: relative;
+  right: 22.5rem;
+  width: 1%;
+  top: 3.75vh;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .navbar-sign-up-btn-content {
-    padding: 13px 20px 15px 20px;
-    border-radius: 30px;
-    background: var(--mainOrange);
-    color: white;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
+  padding: 13px 20px 15px 20px;
+  border-radius: 30px;
+  background: var(--mainOrange);
+  color: white;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .navbar-sign-up-btn-content:hover {
-    background: rgb(202, 151, 32);
+  background: rgb(202, 151, 32);
 }
 
 .travel-alert-button-smallscreen {
-    position: relative;
-    top: 10vh;
-    left: -95%;
-    color: white;
-    z-index: 1;
-    cursor: pointer;
+  position: relative;
+  top: 10vh;
+  left: -110%;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .navbar-login-btn-wrapper-smallscreen {
-    position: relative;
-    top: -2.7vh;
-    right: -40%;
+  position: relative;
+  top: -2.7vh;
+  right: -40%;
 }
 
-
 @media screen and (max-width: 710px) {
+  .navbar-home-icon {
+    width: 200px;
+    position: relative;
+    top: -1vh;
+    z-index: 1;
+  }
 
-    .navbar-home-icon {
-        width: 200px;
-        position: relative;
-        top: -1vh;
-        z-index: 1;
-    }
+  .navbar-wrapper-home {
+    width: 105vw;
+  }
 
-    .navbar-wrapper-home {
-        width: 105vw;
-    }
-
-    .navbar-wrapper {
-        width: 105vw;
-    }
-
+  .navbar-wrapper {
+    width: 105vw;
+  }
 }
 
 @media screen and (max-width: 455px) {
-    .navbar-home-icon {
-        left: -5vw
-    }
+  .navbar-home-icon {
+    left: -5vw;
+  }
 }
